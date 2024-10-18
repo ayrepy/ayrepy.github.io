@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYREPY</title>
-    <link rel="stylesheet" href="style.css"> <https://github.com/ayrepy/ayrepy.github.io/blob/dc7e9505ef5e394dd271624563b6b80150781c0d/style.css>
+    <title>Ayrepy - Your Trusted Tech Store</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
 </head>
 <body>
     <header>
@@ -72,13 +72,23 @@
 
     <section id="contact">
         <h2>Contact Us</h2>
-        <form action="mailto:ayrepy@gmail.com" method="post" enctype="text/plain">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <input type="submit" value="Send">
-        </form>
+        <!-- Simple mailto link for email -->
+        <p>Email us at: <a href="mailto:ayrepy@gmail.com">ayrepy@gmail.com</a></p>
+
+        <!-- Crisp Live Chat Support -->
+        <h3>Live Customer Support</h3>
+        <p>Click below for live chat support.</p>
+        <script type="text/javascript">
+            window.$crisp = [];
+            window.CRISP_WEBSITE_ID = "834f4068-47ce-4898-b999-5efdbcd3367f";
+            (function(){
+                d=document;
+                s=d.createElement("script");
+                s.src="https://client.crisp.chat/l.js";
+                s.async=1;
+                d.getElementsByTagName("head")[0].appendChild(s);
+            })();
+        </script>
     </section>
 
     <section id="checkout">
@@ -88,20 +98,11 @@
         <div id="paypal-button-container"></div> <!-- PayPal script will place the button here -->
     </section>
 
-<footer id="footer" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: white; text-align: center; padding: 10px; z-index: 100;">
-    <p>&copy; 2024 AYREPY. All rights reserved.</p>
-    <p><strong>Safe and Secure Payments:</strong> All transactions are secured by SSL encryption and trusted payment gateways like PayPal.</p>
-    <button id="hideFooterButton" style="background-color: #555; color: white; border: none; padding: 5px 10px; cursor: pointer;">Hide Footer</button>
-</footer>
-
-<script>
-    // Hide footer when the button is clicked
-    document.getElementById('hideFooterButton').addEventListener('click', function() {
-        var footer = document.getElementById('footer');
-        footer.style.display = 'none';
-    });
-</script>
-
+    <footer id="footer" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: white; text-align: center; padding: 10px; z-index: 100;">
+        <p>&copy; 2024 AYREPY. All rights reserved.</p>
+        <p><strong>Safe and Secure Payments:</strong> All transactions are secured by SSL encryption and trusted payment gateways like PayPal.</p>
+        <button id="hideFooterButton" style="background-color: #555; color: white; border: none; padding: 5px 10px; cursor: pointer;">Hide Footer</button>
+    </footer>
 
     <script src="app.js"></script> <!-- Link to your JavaScript file -->
     <script src="https://www.paypal.com/sdk/js?client-id=your-client-id"></script> <!-- PayPal SDK script -->
@@ -128,35 +129,64 @@
         function showProductDetails() {
             var product = document.getElementById('productDropdown').value;
             var details = document.getElementById('productDetails');
-            if (product === "airpods2") {
+            var productInfo = {
+                "airpods2": {
+                    name: "AirPods 2",
+                    price: "$50",
+                    description: "Classic AirPods with high-quality sound and long battery life.",
+                    color: "White",
+                    returnPolicy: "Returns available within 30 days"
+                },
+                "airpodspro2": {
+                    name: "AirPods Pro 2",
+                    price: "$125",
+                    description: "Premium noise-canceling AirPods with advanced features.",
+                    color: "White",
+                    returnPolicy: "Returns available within 30 days"
+                },
+                "airpodspro1": {
+                    name: "AirPods Pro 1",
+                    price: "$85",
+                    description: "The original Pro model with active noise cancellation.",
+                    color: "White",
+                    returnPolicy: "Returns available within 30 days"
+                },
+                "airpods3rdgen": {
+                    name: "AirPods 3rd Gen",
+                    price: "$75",
+                    description: "Perfect blend of size and functionality.",
+                    color: "White",
+                    returnPolicy: "Returns available within 30 days"
+                },
+                "airpodspro2usb": {
+                    name: "AirPods Pro 2 USB-C",
+                    price: "$150",
+                    description: "Newest Pro model with USB-C charging.",
+                    color: "White",
+                    returnPolicy: "Returns available within 30 days"
+                },
+                "airpods4": {
+                    name: "AirPods 4",
+                    price: "$100",
+                    description: "Latest model with enhanced sound.",
+                    color: "White",
+                    returnPolicy: "Returns available within 30 days"
+                },
+                "airpods4anc": {
+                    name: "AirPods 4 ANC",
+                    price: "$105",
+                    description: "New generation AirPods with even better noise cancellation.",
+                    color: "White",
+                    returnPolicy: "Returns available within 30 days"
+                },
+                "airpodsmax": {
+                    name: "AirPods Max",
+                    price: "$250",
+                    description: "High-end over-ear AirPods for audiophiles.",
+                    color: "Available in Space Gray, Silver, Green, Sky Blue, Pink",
+                    returnPolicy: "Returns available within 30 days"
+                }
+            };
+            if (productInfo[product]) {
                 details.innerHTML = `
-                    <h3>AirPods 2</h3>
-                    <p>Classic AirPods with high-quality sound and long battery life.</p>
-                    <p><strong>Colors:</strong> White</p>
-                    <p><strong>Price:</strong> $129.00</p>
-                    <p><strong>Returns:</strong> Available within 30 days</p>
-                `;
-            }
-            // Add similar blocks for other products
-        }
-
-        // Product Quiz Logic
-        document.getElementById('quizForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var use = document.querySelector('input[name="use"]:checked').value;
-            var noiseCancellation = document.querySelector('input[name="noiseCancellation"]:checked').value;
-            var chargingCase = document.querySelector('input[name="chargingCase"]:checked').value;
-            var result = "Based on your choices, we recommend: ";
-
-            if (use === "music" && noiseCancellation === "yes") {
-                result += "AirPods Pro 2 for excellent sound quality and noise cancellation.";
-            } else if (use === "calls" && chargingCase === "wireless") {
-                result += "AirPods 3rd Gen for great call quality and wireless charging.";
-            } else {
-                result += "AirPods 2 for great all-round performance.";
-            }
-            document.getElementById('quizResult').innerHTML = result;
-        });
-    </script>
-</body>
-</html>
+                    <
