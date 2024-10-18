@@ -88,10 +88,20 @@
         <div id="paypal-button-container"></div> <!-- PayPal script will place the button here -->
     </section>
 
-    <footer>
-        <p>&copy; 2024 AYREPY. All rights reserved.</p>
-        <p><strong>Safe and Secure Payments:</strong> All transactions are secured by SSL encryption and trusted payment gateways like PayPal.</p>
-    </footer>
+<footer id="footer" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: white; text-align: center; padding: 10px; z-index: 100;">
+    <p>&copy; 2024 AYREPY. All rights reserved.</p>
+    <p><strong>Safe and Secure Payments:</strong> All transactions are secured by SSL encryption and trusted payment gateways like PayPal.</p>
+    <button id="hideFooterButton" style="background-color: #555; color: white; border: none; padding: 5px 10px; cursor: pointer;">Hide Footer</button>
+</footer>
+
+<script>
+    // Hide footer when the button is clicked
+    document.getElementById('hideFooterButton').addEventListener('click', function() {
+        var footer = document.getElementById('footer');
+        footer.style.display = 'none';
+    });
+</script>
+
 
     <script src="app.js"></script> <!-- Link to your JavaScript file -->
     <script src="https://www.paypal.com/sdk/js?client-id=your-client-id"></script> <!-- PayPal SDK script -->
