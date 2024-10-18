@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ayrepy</title>
+    <title>AYREPY</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
 </head>
 <body>
     <header>
-        <h1>!AYREPY!</h1>
+        <h1>Welcome to AYREPY!</h1>
         <nav>
             <a href="#about">About</a>
-            <a href="#services">Services</a>
+            <a href="#products">Products</a>
+            <a href="#quiz">Product Quiz</a>
             <a href="#contact">Contact</a>
             <a href="#checkout">Checkout</a>
         </nav>
@@ -19,39 +20,133 @@
 
     <section id="about">
         <h2>About Us</h2>
-        <p>We are a small business located in Oklahoma City, Oklahoma. We have lots of connections from North America to Asia with previous customers coming internationally. We focus on providing the best customer support and deals. We made our website super simple so you can just click and buy. Since we are a small store, we provide the most excellent care and 24/7 support. Please contact us for more information.</p>
-        <img src="your-image-url.jpg" alt="About Us Image">
+        <p>We are a small, family-owned business located in Oklahoma City, Oklahoma. We pride ourselves on offering high-quality products and exceptional customer service. With connections from North America to Asia, we've had the privilege of serving customers worldwide. Our mission is to provide a seamless shopping experience, making it easy for you to find and purchase what you need with just a few clicks.</p>
+        <img src="your-image-url.jpg" alt="About Us Image" style="max-width:100%;height:auto;">
     </section>
 
-    <section id="services">
-        <h2>Our Services</h2>
-        <p>We offer these latest products!</p>
-        <!-- Airpods 1,2,3,4,Max and Pro models latest versions! -->
+    <section id="products">
+        <h2>Our Products</h2>
+        <p>Select from our wide range of AirPods models, complete with multiple colors and return options. Click each product for more details.</p>
+
+        <!-- Dropdown for products -->
+        <select id="productDropdown" onchange="showProductDetails()">
+            <option value="">Select a product...</option>
+            <option value="airpods2">AirPods 2</option>
+            <option value="airpodspro2">AirPods Pro 2</option>
+            <option value="airpodspro1">AirPods Pro 1</option>
+            <option value="airpods3rdgen">AirPods 3rd Gen</option>
+            <option value="airpodspro2usb">AirPods Pro 2 USB-C</option>
+            <option value="airpods4">AirPods 4</option>
+            <option value="airpods4anc">AirPods 4 ANC</option>
+            <option value="airpodsmax">AirPods Max</option>
+        </select>
+
+        <div id="productDetails">
+            <!-- Product details will load here based on the selection -->
+        </div>
+    </section>
+
+    <!-- Product Quiz -->
+    <section id="quiz">
+        <h2>Not sure which AirPods are right for you?</h2>
+        <p>Take our quiz to find the perfect match!</p>
+
+        <form id="quizForm">
+            <label>What's your primary use for AirPods?</label><br>
+            <input type="radio" name="use" value="music"> Listening to music<br>
+            <input type="radio" name="use" value="calls"> Taking calls<br>
+            <input type="radio" name="use" value="workout"> During workouts<br><br>
+
+            <label>Do you prefer noise cancellation?</label><br>
+            <input type="radio" name="noiseCancellation" value="yes"> Yes<br>
+            <input type="radio" name="noiseCancellation" value="no"> No<br><br>
+
+            <label>Do you want a charging case?</label><br>
+            <input type="radio" name="chargingCase" value="wireless"> Wireless Charging Case<br>
+            <input type="radio" name="chargingCase" value="standard"> Standard Case<br><br>
+
+            <input type="submit" value="Find the Best Fit">
+        </form>
+        <div id="quizResult"></div>
     </section>
 
     <section id="contact">
         <h2>Contact Us</h2>
         <form action="mailto:ayrepy@gmail.com" method="post" enctype="text/plain">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" required>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" required>
             <input type="submit" value="Send">
         </form>
     </section>
 
     <section id="checkout">
         <h2>Checkout</h2>
-        <p>Add items to your cart and proceed to checkout.</p>
-        <button id="checkoutButton">Checkout</button>
+        <p>Select your preferred product and proceed to checkout securely via PayPal.</p>
+        <!-- PayPal button integration -->
+        <div id="paypal-button-container"></div> <!-- PayPal script will place the button here -->
     </section>
 
     <footer>
-        <p>&copy; 2024 [Your Business Name]. All rights reserved.</p>
+        <p>&copy; 2024 AYREPY. All rights reserved.</p>
+        <p><strong>Safe and Secure Payments:</strong> All transactions are secured by SSL encryption and trusted payment gateways like PayPal.</p>
     </footer>
 
     <script src="app.js"></script> <!-- Link to your JavaScript file -->
+    <script src="https://www.paypal.com/sdk/js?client-id=your-client-id"></script> <!-- PayPal SDK script -->
+    <script>
+        // Load PayPal button
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '100.00' // Placeholder value, update dynamically
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                });
+            }
+        }).render('#paypal-button-container'); // Render PayPal button
+
+        // Show product details
+        function showProductDetails() {
+            var product = document.getElementById('productDropdown').value;
+            var details = document.getElementById('productDetails');
+            if (product === "airpods2") {
+                details.innerHTML = `
+                    <h3>AirPods 2</h3>
+                    <p>Classic AirPods with high-quality sound and long battery life.</p>
+                    <p><strong>Colors:</strong> White</p>
+                    <p><strong>Price:</strong> $129.00</p>
+                    <p><strong>Returns:</strong> Available within 30 days</p>
+                `;
+            }
+            // Add similar blocks for other products
+        }
+
+        // Product Quiz Logic
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var use = document.querySelector('input[name="use"]:checked').value;
+            var noiseCancellation = document.querySelector('input[name="noiseCancellation"]:checked').value;
+            var chargingCase = document.querySelector('input[name="chargingCase"]:checked').value;
+            var result = "Based on your choices, we recommend: ";
+
+            if (use === "music" && noiseCancellation === "yes") {
+                result += "AirPods Pro 2 for excellent sound quality and noise cancellation.";
+            } else if (use === "calls" && chargingCase === "wireless") {
+                result += "AirPods 3rd Gen for great call quality and wireless charging.";
+            } else {
+                result += "AirPods 2 for great all-round performance.";
+            }
+            document.getElementById('quizResult').innerHTML = result;
+        });
+    </script>
 </body>
 </html>
-
-<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="834f4068-47ce-4898-b999-5efdbcd3367f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
