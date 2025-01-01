@@ -15,3 +15,25 @@ Ayrepy is a personalized AI-powered tool designed to help students solve problem
 3. Receive instant AI-powered assistance.
 
 © 2025 Ayrepy. All rights reserved.
+
+
+# Ayrepy ChatGPT Tool
+
+This is a lightweight tool that provides ChatGPT-powered assistance for math, chemistry, and other subjects. Users can upload images or type in problems for solutions.
+
+## Features
+- Solve math and chemistry problems
+- Upload screenshots for image-based solutions
+- Simple and responsive design
+
+## How to Use
+1. Enter your question in the input field.
+2. Submit the form and wait for the response.
+
+## Future Plans
+- Add image recognition for solving problems from screenshots.
+- Secure backend for API requests.
+- Subscription-based access with usage limits.
+
+## License
+MIT License
